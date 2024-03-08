@@ -7,7 +7,7 @@ from matplotlib.backends.backend_template import FigureCanvas
 
 from ui_your_interface import Ui_MainWindow
 from spotify_manager import SpotifyManager
-from audio_visual import AudioVisual
+from audio_visual import RealTimeAudioVisualizer
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -20,7 +20,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer.start(100)  # Adjust the interval as needed
         self.populate_playlist_with_liked_songs()
         self.tableWidget.itemClicked.connect(self.play_selected_music)
-        self.audiovisualizer = AudioVisual()  # Create the visualizer instance
+        self.audiovisualizer = RealTimeAudioVisualizer()  # Create the visualizer instance
         self.widget.setLayout(self.audiovisualizer)  # Add the visualizer instance to the layout
     def populate_playlist_with_liked_songs(self):
         try:
@@ -60,7 +60,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.widget.setLayout(self.musiquelayout)
 
         layout = QVBoxLayout()  # Create a layout
-        self.audiovisualizer = AudioVisual()  # Create the visualizer instance
+        self.audiovisualizer = RealTimeAudioVisualizer()  # Create the visualizer instance
         layout.addWidget(self.audiovisualizer)  # Add the visualizer instance to the layout
         self.widget.setLayout(layout)  # Correctly set layout to the widget
 
