@@ -15,10 +15,10 @@ class SpotifyManager:
             QMessageBox.critical(None, "Spotify Error", f"An error occurred while authenticating with Spotify: {str(e)}")
     def get_unique_liked_songs(self):
         liked_songs = set()
-        results = self.sp.current_user_saved_tracks(limit=20)
+        results = self.sp.current_user_saved_tracks(limit=50)
         for item in results['items']:
             track_id = item['track']['id']
-            liked_songs.add(track_id)
+            liked_songs.add(item['id'])
 
         top_tracks = self.sp.current_user_top_tracks(limit=50)['items']
         for track in top_tracks:
@@ -26,7 +26,7 @@ class SpotifyManager:
 
         recently_played = self.sp.current_user_recently_played(limit=50)['items']
         for item in recently_played:
-            liked_songs.add(item['track']['id'])
+            liked_songs.add(item['id'])
 
         return list(liked_songs)
 

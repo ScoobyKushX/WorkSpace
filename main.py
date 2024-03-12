@@ -1,13 +1,14 @@
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QScreen
-from main_window import MainWindow
+from integrated_application import MainWindow
 import sys
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    mainwindow = MainWindow()
+    window = MainWindow()
+    window.ui.show()
     screen_geometry = QScreen.availableGeometry(app.primaryScreen())
-    mainwindow.setGeometry(screen_geometry)
-    mainwindow.show()
+    window.setGeometry(screen_geometry)
+    window.show()
     sys.exit(app.exec())
