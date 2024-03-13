@@ -20,8 +20,9 @@ from PySide6.QtQuickWidgets import QQuickWidget
 from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout,
     QHeaderView, QLCDNumber, QLabel, QProgressBar,
     QPushButton, QScrollArea, QScrollBar, QSizePolicy,
-    QSlider, QStackedWidget, QTabWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QSlider, QSpacerItem, QStackedWidget, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -76,9 +77,23 @@ class Ui_Form(object):
         self.widget_generateur_accords = QWidget(self.widget_playlist)
         self.widget_generateur_accords.setObjectName(u"widget_generateur_accords")
         self.widget_generateur_accords.setGeometry(QRect(800, 10, 331, 301))
-        self.widget_7 = QWidget(self.widget_generateur_accords)
+        self.verticalLayoutWidget_3 = QWidget(self.widget_generateur_accords)
+        self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
+        self.verticalLayoutWidget_3.setGeometry(QRect(-1, -1, 331, 311))
+        self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.widget_7 = QWidget(self.verticalLayoutWidget_3)
         self.widget_7.setObjectName(u"widget_7")
-        self.widget_7.setGeometry(QRect(19, 9, 291, 271))
+        self.widget_7.setBaseSize(QSize(0, 0))
+
+        self.verticalLayout_3.addWidget(self.widget_7)
+
+        self.pushButton_3 = QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.verticalLayout_3.addWidget(self.pushButton_3)
+
         self.tableWidget = QTableWidget(self.widget_playlist)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(-5, 61, 731, 241))
@@ -366,28 +381,40 @@ class Ui_Form(object):
 
         self.gridLayout_3.addWidget(self.lcdNumber, 0, 0, 1, 1)
 
-        self.scrollArea = QScrollArea(self.widget)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setGeometry(QRect(439, 9, 811, 251))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 809, 249))
-        self.label_5 = QLabel(self.scrollAreaWidgetContents)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(30, 20, 211, 31))
-        self.label_5.setStyleSheet(u"font: 22pt \"Yellowtail\";")
-        self.label_5.setTextFormat(Qt.PlainText)
-        self.label_5.setScaledContents(False)
-        self.label_5.setOpenExternalLinks(False)
-        self.verticalScrollBar = QScrollBar(self.scrollAreaWidgetContents)
-        self.verticalScrollBar.setObjectName(u"verticalScrollBar")
-        self.verticalScrollBar.setGeometry(QRect(780, 0, 21, 241))
-        self.verticalScrollBar.setOrientation(Qt.Vertical)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.scrollArea.raise_()
-        self.gridLayoutWidget_2.raise_()
-        self.gridLayoutWidget_3.raise_()
+        self.widget_8 = QWidget(self.widget)
+        self.widget_8.setObjectName(u"widget_8")
+        self.widget_8.setGeometry(QRect(449, 9, 631, 251))
+        self.horizontalLayoutWidget_3 = QWidget(self.widget_8)
+        self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
+        self.horizontalLayoutWidget_3.setGeometry(QRect(9, -1, 621, 251))
+        self.horizontalLayout_3 = QHBoxLayout(self.horizontalLayoutWidget_3)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.textEdit = QTextEdit(self.horizontalLayoutWidget_3)
+        self.textEdit.setObjectName(u"textEdit")
+
+        self.horizontalLayout_3.addWidget(self.textEdit)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.horizontalLayout_3.addItem(self.verticalSpacer_2)
+
+        self.verticalSlider_11 = QSlider(self.horizontalLayoutWidget_3)
+        self.verticalSlider_11.setObjectName(u"verticalSlider_11")
+        self.verticalSlider_11.setOrientation(Qt.Vertical)
+
+        self.horizontalLayout_3.addWidget(self.verticalSlider_11)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.horizontalLayout_3.addItem(self.verticalSpacer)
+
+        self.verticalSlider_10 = QSlider(self.horizontalLayoutWidget_3)
+        self.verticalSlider_10.setObjectName(u"verticalSlider_10")
+        self.verticalSlider_10.setOrientation(Qt.Vertical)
+
+        self.horizontalLayout_3.addWidget(self.verticalSlider_10)
+
         self.gridLayoutWidget_4 = QWidget(Form)
         self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
         self.gridLayoutWidget_4.setGeometry(QRect(19, 819, 254, 241))
@@ -468,6 +495,7 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Soundcloud Player", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"Playlist automatis\u00e9e", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Form", u"PushButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_musique), QCoreApplication.translate("Form", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_programmation), QCoreApplication.translate("Form", u"Tab 2", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_montage_video), QCoreApplication.translate("Form", u"Page", None))
@@ -491,6 +519,5 @@ class Ui_Form(object):
         self.label_3.setText(QCoreApplication.translate("Form", u"TextLabel", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"PushButton", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"TextLabel", None))
-        self.label_5.setText(QCoreApplication.translate("Form", u"SCROLL AREA", None))
     # retranslateUi
 
