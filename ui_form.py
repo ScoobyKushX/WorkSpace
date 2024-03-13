@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout
     QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
     QWidget)
 
+
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
@@ -33,7 +34,7 @@ class Ui_Form(object):
         Form.setStyleSheet(u"")
         self.gridLayoutWidget = QWidget(Form)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(19, 409, 1891, 381))
+        self.gridLayoutWidget.setGeometry(QRect(19, 409, 1891, 2579))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -77,23 +78,12 @@ class Ui_Form(object):
         self.widget_generateur_accords = QWidget(self.widget_playlist)
         self.widget_generateur_accords.setObjectName(u"widget_generateur_accords")
         self.widget_generateur_accords.setGeometry(QRect(800, 10, 331, 301))
-        self.verticalLayoutWidget_3 = QWidget(self.widget_generateur_accords)
-        self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
-        self.verticalLayoutWidget_3.setGeometry(QRect(-1, -1, 331, 311))
-        self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.widget_7 = QWidget(self.verticalLayoutWidget_3)
+        self.widget_7 = QWidget(self.widget_generateur_accords)
         self.widget_7.setObjectName(u"widget_7")
-        self.widget_7.setBaseSize(QSize(0, 0))
-
-        self.verticalLayout_3.addWidget(self.widget_7)
-
-        self.pushButton_3 = QPushButton(self.verticalLayoutWidget_3)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.verticalLayout_3.addWidget(self.pushButton_3)
-
+        self.widget_7.setGeometry(QRect(19, 9, 291, 231))
+        self.pushButton_generate_chords = QPushButton(self.widget_generateur_accords)
+        self.pushButton_generate_chords.setObjectName(u"pushButton_generate_chords")
+        self.pushButton_generate_chords.setGeometry(QRect(30, 260, 271, 31))
         self.tableWidget = QTableWidget(self.widget_playlist)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(-5, 61, 731, 241))
@@ -155,7 +145,7 @@ class Ui_Form(object):
         self.stackedWidgetAI.addWidget(self.page_6)
         self.verticalLayoutWidget = QWidget(self.tab_AI)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 611, 301))
+        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 1510, 15612))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -249,7 +239,7 @@ class Ui_Form(object):
         self.widget_2.setObjectName(u"widget_2")
         self.verticalLayoutWidget_2 = QWidget(self.widget_2)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 10, 281, 381))
+        self.verticalLayoutWidget_2.setGeometry(QRect(10, 10, 1492, 13004))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -326,7 +316,7 @@ class Ui_Form(object):
         self.widget.setGeometry(QRect(270, 810, 1249, 262))
         self.gridLayoutWidget_2 = QWidget(self.widget)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(9, -1, 421, 241))
+        self.gridLayoutWidget_2.setGeometry(QRect(9, -1, 2898, 10428))
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -386,7 +376,7 @@ class Ui_Form(object):
         self.widget_8.setGeometry(QRect(449, 9, 631, 251))
         self.horizontalLayoutWidget_3 = QWidget(self.widget_8)
         self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
-        self.horizontalLayoutWidget_3.setGeometry(QRect(9, -1, 621, 251))
+        self.horizontalLayoutWidget_3.setGeometry(QRect(9, -1, 6086, 5172))
         self.horizontalLayout_3 = QHBoxLayout(self.horizontalLayoutWidget_3)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -417,7 +407,7 @@ class Ui_Form(object):
 
         self.gridLayoutWidget_4 = QWidget(Form)
         self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
-        self.gridLayoutWidget_4.setGeometry(QRect(19, 819, 254, 241))
+        self.gridLayoutWidget_4.setGeometry(QRect(19, 819, 13460, 241))
         self.gridLayout_4 = QGridLayout(self.gridLayoutWidget_4)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -495,7 +485,7 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Soundcloud Player", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"Playlist automatis\u00e9e", None))
-        self.pushButton_3.setText(QCoreApplication.translate("Form", u"PushButton", None))
+        self.pushButton_generate_chords.setText(QCoreApplication.translate("Form", u"PushButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_musique), QCoreApplication.translate("Form", u"Tab 1", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_programmation), QCoreApplication.translate("Form", u"Tab 2", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_montage_video), QCoreApplication.translate("Form", u"Page", None))

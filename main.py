@@ -1,6 +1,6 @@
 
-from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QScreen
+import PySide6
+import PySide6.QtGui
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtUiTools import QUiLoader
