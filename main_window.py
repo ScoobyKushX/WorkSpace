@@ -11,10 +11,15 @@ from Chords_generator import PartitionWidget
 #from audio_visual import RealTimeAudioVisualizer
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, parent=Ui_MainWindow):
         super(MainWindow, self).__init__(parent=None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
+        self.ui = Ui_MainWindow()  # Crée une instance de l'interface utilisateur
         self.ui.setupUi(self)  # Charge l'interface utilisateur
+        self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
+        self.ui.progressBar_3 = QProgressBar(self.ui.centralwidget)
+        self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
+        self.ui.progressBar_3.setMaximum(100)
 
 
 
@@ -53,3 +58,8 @@ class MainWindow(QMainWindow):
     def generate_chords(self):
         print("generate_chords clicked!")
 
+    def update_progress_bar(self, value):
+        if 0 <= value <= 100:
+            self.ui.progressBar_3.setValue(value)
+        else:
+            print("Invalid value for progress bar.")

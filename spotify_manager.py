@@ -2,9 +2,12 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotify_config import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI
 from PySide6.QtWidgets import QMessageBox
+from main_window import MainWindow
+MainWindow = MainWindow()
 class SpotifyManager:
     def __init__(self):
         try:
+            MainWindow.update_progress_bar(10)
             self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
                 client_id=SPOTIFY_CLIENT_ID,
                 client_secret=SPOTIFY_CLIENT_SECRET,
@@ -15,6 +18,7 @@ class SpotifyManager:
             QMessageBox.critical(None, "Spotify Error", f"An error occurred while authenticating with Spotify: {str(e)}")
 
     def get_unique_liked_songs(self):
+        MainWindow.update_progress_bar(20)
         liked_songs = set()
         """results = self.sp.current_user_saved_tracks(limit=50)
         for item in results['items']:
@@ -34,6 +38,7 @@ class SpotifyManager:
         return list(liked_songs)
 
     def play_music(self, track_id=None):
+        MainWindow.update_progress_bar(30)
         devices = self.sp.devices()
         if devices['devices']:
             device_id = devices['devices'][0]['id']
