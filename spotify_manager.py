@@ -20,11 +20,6 @@ class SpotifyManager:
     def get_unique_liked_songs(self):
         #MainWindow.update_progress_bar(20)
         liked_songs = set()
-        """results = self.sp.current_user_saved_tracks(limit=50)
-        for item in results['items']:
-            track_id = item['track']['id']
-            liked_songs.add(track_id)  # Utilisez track_id ici au lieu de item['id']"""
-
         top_tracks = self.sp.current_user_top_tracks(limit=50)['items']
         for track in top_tracks:
             track_id = track['track']['id']

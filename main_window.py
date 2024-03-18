@@ -1,4 +1,3 @@
-import PySide6.QtWidgets, PySide6.QtGui, PySide6.QtCore, PySide6.QtUiTools
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
@@ -11,15 +10,14 @@ from Chords_generator import PartitionWidget
 
 #from audio_visual import RealTimeAudioVisualizer
 
-class MainWindow(QMainWindow):
+class MainWindow(parent=None):
     def __init__(self, parent=Ui_MainWindow):
         super(MainWindow, self).__init__(parent=None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
         self.ui = Ui_MainWindow()  # Crée une instance de l'interface utilisateur
         self.ui.setupUi(self)  # Charge l'interface utilisateur
-        self.populate_with_good_songs
+        self.populate_playlist_table
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
-        self.ui.progressBar_3 = QProgressBar(self.ui.centralwidget)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
         self.ui.progressBar_3.setMaximum(100)
 
@@ -39,24 +37,19 @@ class MainWindow(QMainWindow):
     def on_slider_value_change(self, value):
         print(f"Slider value changed: {value}")
 
-    def populate_with_good_songs(self):
-        try:
-            unique_song_ids = self.sp_manager.get_unique_liked_songs()
-            self.ui.tableWidget_3.setRowCount(len(unique_song_ids))
+    def populate_playlist_table(self):
+    # Récupère les playlists de l'utilisateur
+        playlists = self.sp_manager.get_user_playlists()
 
-            for i, track_id in enumerate(unique_song_ids):
-                try:
-                    track_details = self.sp_manager.sp.track(track_id)
-                    track_name = f"{track_details['artists'][0]['name']} - {track_details['name']}"
-                    self.ui.tableWidget_3.setItem(i, 0, QTableWidgetItem(track_name))
-                except Exception as e_inner:
-                    print(f"Error loading song details for track ID {track_id}: {str(e_inner)}")
-                    QMessageBox.critical(self, "Error",
-                                         f"Failed to load song details for track ID {track_id}: {str(e_inner)}")
-        except Exception as e:
-            print(f"Failed to load liked songs: {str(e)}")
-            QMessageBox.critical(self, "Error", f"Failed to load liked songs: {str(e)}")
-            return 
+        # Configure le QTableWidget
+        self.ui.playlistTable.setRowCount(len(playlists))
+        self.ui.playlistTable.setColumnCount(2)  # Par exemple, 'Nom de la playlist' et 'Nombre de titres'
+        self.ui.playlistTable.setHorizontalHeaderLabels(['Playlist Name', 'Number of Tracks'])
+
+        # Remplit le tableau avec les données des playlists
+        for i, playlist in enumerate(playlists):
+            self.ui.playlistTable.setItem(i, 0, QTableWidgetItem(playlist['name']))
+            self.ui.playlistTable.setItem(i, 1, QTableWidgetItem(str(playlist['tracks']['total'])))
 
     def generate_chords(self):
         print("generate_chords clicked!")

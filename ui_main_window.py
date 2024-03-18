@@ -11,7 +11,7 @@ from PySide6.QtOpenGLWidgets import QOpenGLWidget
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def pro(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1920, 1080)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
