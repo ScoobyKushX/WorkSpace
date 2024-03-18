@@ -1,6 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotify_config import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI
+from PySide6.QtWidgets import QTableWidgetItem
 
 class SpotifyManager:
     def __init__(self):
@@ -27,36 +28,38 @@ class SpotifyManager:
 
     def get_unique_liked_songs(self):
         self.refresh_token()
-        liked_songs = []
-        
-        # Fetch top tracks and recently played tracks
         top_tracks = self.sp.current_user_top_tracks(limit=50)['items']
         recently_played = self.sp.current_user_recently_played(limit=50)['items']
-        
-        # Iterate over top tracks and check for 'track' key
-        for item in top_tracks:
-            if 'track' in item:
-                liked_songs.append(item['track']['id'])
-        
-        # Iterate over recently played tracks and check for 'track' key
+
+        track_ids = set()
+        unique_tracks = []
+
+        for track in top_tracks:
+            if 'id' in track and track['id'] not in track_ids:
+                unique_tracks.append(track)
+                track_ids.add(track['id'])
+
         for item in recently_played:
-            if 'track' in item:
-                liked_songs.append(item['track']['id'])
-        
-        return liked_songs
+            # 'track' key might be nested within 'item' for recently played tracks
+            if 'track' in item and 'id' in item['track'] and item['track']['id'] not in track_ids:
+                unique_tracks.append(item['track'])
+                track_ids.add(item['track']['id'])
+
+        return unique_tracks
+
+    def populate_playlist_table(self):
+        unique_tracks = self.get_unique_liked_songs()
+
+        self.ui.tableWidget_3.setRowCount(len(unique_tracks))
+
+        for i, track in enumerate(unique_tracks):
+            # Using 'name' to fetch the track name
+            # Ensure 'name' is present in the track dictionary
+            track_name = track['track']['name'] if 'name' in track['track'] else 'Unknown Name'
+            self.ui.tableWidget_3.setItem(i, 0, QTableWidgetItem(track_name))
 
 
-    # New method example: Get the current user's recently played tracks
-    def get_recently_played_tracks(self):
-        self.refresh_token()  # Ensure the token is refreshed before making the API call
-        recently_played = self.sp.current_user_recently_played(limit=50)  # Fetch the recently played tracks
-        
-        # Extract the track IDs from the response
-        track_ids = [item['track']['id'] for item in recently_played['items'] if item['track']]
-        
-        return track_ids
-
-    # Additional methods should follow the same structure:
-    # 1. Call refresh_token()
-    # 2. Perform the API call
-    # 3. Return the desired data
+        # Additional methods should follow the same structure:
+        # 1. Call refresh_token()
+        # 2. Perform the API call
+        # 3. Return the desired data
