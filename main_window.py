@@ -1,25 +1,20 @@
-
-from PySide6.QtWidgets import QMainWindow
-from PySide6.QtWidgets import QTableWidget
+from PySide6.QtWidgets import QMainWindow, QTableWidgetItem
 from ui_main_window import Ui_MainWindow
 from spotify_manager import SpotifyManager
 from Chords_generator import PartitionWidget
 
+# from audio_visual import RealTimeAudioVisualizer
 
-#from audio_visual import RealTimeAudioVisualizer
-
-class MainWindow(parent=QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self, parent=Ui_MainWindow):
         super(MainWindow, self).__init__(parent=None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
-        self.ui = Ui_MainWindow()  # Crée une instance de l'interface utilisateur
-        self.ui.setupUi(self)  # Charge l'interface utilisateur
+        self.ui = Ui_MainWindow()  # Create an instance of the user interface
+        self.ui.setupUI(self)  # Load the user interface
         self.populate_playlist_table()
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
         self.ui.progressBar_3.setMaximum(100)
-
-
 
     def on_button_click(self):
         try:
@@ -27,8 +22,7 @@ class MainWindow(parent=QMainWindow):
             print(f"Playing: {selected_music}")
         except AttributeError:
             print("No music selected. Please select a music from the table.")
-    # Cette fonction semble être référencée mais n'est pas définie.
-    # Définissons-la pour éviter les erreurs.
+
     def on_text_edit_change(self):
         print("Text changed!")
 
@@ -36,19 +30,27 @@ class MainWindow(parent=QMainWindow):
         print(f"Slider value changed: {value}")
 
     def populate_playlist_table(self):
-    # Récupère les playlists de l'utilisateur
-        playlists = self.sp_manager.get_user_playlists()
+        top_tracks = self.sp_manager.get_unique_liked_songs()
+        recently_played_tracks = self.sp_manager.get_recently_played_tracks()
 
-        # Configure le QTableWidget
-        self.ui.playlistTable.setRowCount(len(playlists))
-        self.ui.playlistTable.setColumnCount(2)  # Par exemple, 'Nom de la playlist' et 'Nombre de titres'
-        self.ui.playlistTable.setHorizontalHeaderLabels(['Playlist Name', 'Number of Tracks'])
+        if top_tracks is None or recently_played_tracks is None:
+            print("Une des listes de pistes est vide.")
+            return
 
-        # Remplit le tableau avec les données des playlists
-        for i, playlist in enumerate(playlists):
-            self.ui.playlistTable.setItem(i, 0, QTableWidgetItem(playlist['name']))
-            self.ui.playlistTable.setItem(i, 1, QTableWidgetItem(str(playlist['tracks']['total'])))
+        
+        
+        self.ui.tableWidget_3.setRowCount(len(top_tracks and recently_played_tracks))
+        self.ui.tableWidget_3.setColumnCount(1)
+        self.ui.tableWidget_3.setColumnWidth(1, 900)
 
+        for i, track in enumerate(top_tracks and recently_played_tracks):
+            if 'name' in track:
+                track_name = QTableWidgetItem(track['name'])
+            else:
+                track_name = QTableWidgetItem("Nom de la piste indisponible")
+
+            self.ui.tableWidget_3.setItem(i, 1, track_name)
+                    
     def generate_chords(self):
         print("generate_chords clicked!")
 

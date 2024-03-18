@@ -13,7 +13,7 @@ class PartitionWidget(QGraphicsView):
 
     def draw_staff(self):
         for i in range(5):  # 5 lignes pour une portée standard
-            self.scene.addLine(0, i * 10, 200, i * 10)
+            self.scene.addLine = QGraphicsLineItem(0, i * 10, 200, i * 10)
 
     def add_clef(self):
         pixmap = QPixmap('clef_de_sol.png')  # Assurez-vous d'avoir une image de clé de sol
