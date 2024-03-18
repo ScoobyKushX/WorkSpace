@@ -3,6 +3,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QTableWidget
 from ui_main_window import Ui_MainWindow
 from spotify_manager import SpotifyManager
 from Chords_generator import PartitionWidget
@@ -16,6 +17,7 @@ class MainWindow(QMainWindow):
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
         self.ui = Ui_MainWindow()  # Crée une instance de l'interface utilisateur
         self.ui.setupUi(self)  # Charge l'interface utilisateur
+        self.populate_with_good_songs
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
         self.ui.progressBar_3 = QProgressBar(self.ui.centralwidget)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
@@ -54,6 +56,7 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"Failed to load liked songs: {str(e)}")
             QMessageBox.critical(self, "Error", f"Failed to load liked songs: {str(e)}")
+            return 
 
     def generate_chords(self):
         print("generate_chords clicked!")
