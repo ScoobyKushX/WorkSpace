@@ -1,7 +1,5 @@
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
-from PySide6.QtCore import *
-from PySide6.QtUiTools import QUiLoader
+
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtWidgets import QTableWidget
 from ui_main_window import Ui_MainWindow
 from spotify_manager import SpotifyManager
@@ -10,13 +8,13 @@ from Chords_generator import PartitionWidget
 
 #from audio_visual import RealTimeAudioVisualizer
 
-class MainWindow(parent=None):
+class MainWindow(parent=QMainWindow):
     def __init__(self, parent=Ui_MainWindow):
         super(MainWindow, self).__init__(parent=None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
         self.ui = Ui_MainWindow()  # Crée une instance de l'interface utilisateur
         self.ui.setupUi(self)  # Charge l'interface utilisateur
-        self.populate_playlist_table
+        self.populate_playlist_table()
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
         self.ui.progressBar_3.setMaximum(100)
