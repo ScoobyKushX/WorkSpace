@@ -52,12 +52,15 @@ class MainWindow(QMainWindow):
     def play_selected_track(self):
         try:
             selected_row = self.ui.tableWidget_3.currentRow()
-            selected_track_item = self.ui.tableWidget_3.item(selected_row, 0)
+            selected_column = self.ui.tableWidget_3.currentColumn()  # Obtenez la colonne sélectionnée
+            selected_track_item = self.ui.tableWidget_3.item(selected_row, selected_column)
 
             if selected_track_item is not None:
                 selected_track_id = selected_track_item.data(Qt.UserRole)
 
                 if selected_track_id:
+                    # Arrête la musique en cours avant de jouer la nouvelle sélection (si nécessaire)
+                    # self.sp_manager.stop_music()  # Décommentez si vous avez implémenté stop_music
                     self.sp_manager.play_music(track_id=selected_track_id)
                 else:
                     print("No track ID selected.")

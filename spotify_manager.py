@@ -7,13 +7,8 @@ class SpotifyManager:
     def __init__(self):
         self.sp = None
         try:
-            self.auth_manager = SpotifyOAuth(
-                client_id=SPOTIFY_CLIENT_ID,
-                client_secret=SPOTIFY_CLIENT_SECRET,
-                redirect_uri=SPOTIFY_REDIRECT_URI,
-                scope="user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private user-top-read user-read-recently-played",
-                cache_path="token_cache.txt"
-            )
+            scope = "user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-private user-top-read user-read-recently-played"
+            self.auth_manager = SpotifyOAuth(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET, redirect_uri=SPOTIFY_REDIRECT_URI, scope=scope, cache_path="token_cache.txt")
             if not self.auth_manager.get_cached_token():
                 self.auth_manager.get_access_token(as_dict=False)
             self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
@@ -43,12 +38,19 @@ class SpotifyManager:
     
             
     def play_music(self, track_id=None):
-        self.refresh_token()
-        if track_id:
-            self.sp.start_playback(uris=[f'spotify:track:{track_id}'])
-        else:
-            print("Aucun identifiant de piste fourni.")    
-            # Additional methods should follow the same structure:
+        try:
+            self.refresh_token()
+            if track_id:
+                self.sp.start_playback(uris=[f'spotify:track:{track_id}'])
+            else:
+                print("Aucun identifiant de piste fourni.")
+        except spotipy.SpotifyException as e:
+            print(f"Erreur lors de la tentative de jouer la piste : {e}")
+                # Additional methods should follow the same structure:
             # 1. Call refresh_token()
             # 2. Perform the API call
             # 3. Return the desired data
+            
+    def stop_music(self):
+        self.refresh_token()
+        self.sp.pause_playback()
