@@ -1,20 +1,24 @@
 from PySide6.QtWidgets import QMainWindow, QTableWidgetItem
 from ui_main_window import Ui_MainWindow
 from spotify_manager import SpotifyManager
-from Chords_generator import PartitionWidget
-
-# from audio_visual import RealTimeAudioVisualizer
+import subprocess
+from PySide6.QtCore import Qt
 
 class MainWindow(QMainWindow):
-    def __init__(self, parent=Ui_MainWindow):
-        super(MainWindow, self).__init__(parent=None)
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
         self.ui = Ui_MainWindow()  # Create an instance of the user interface
         self.ui.setupUI(self)  # Load the user interface
+
+
         self.populate_playlist_table()
+        print('RIEN RIEN RIEN RIEN RIEN')
+
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
         self.ui.progressBar_3.setMaximum(100)
+        self.ui.tableWidget_3.itemClicked.connect(self.play_selected_track)
 
     def on_button_click(self):
         try:
@@ -30,31 +34,40 @@ class MainWindow(QMainWindow):
         print(f"Slider value changed: {value}")
 
     def populate_playlist_table(self):
-        top_tracks = self.sp_manager.get_unique_liked_songs()
+        unique_tracks = self.sp_manager.get_unique_liked_songs()
+        self.ui.tableWidget_3.setRowCount(len(unique_tracks))
+        self.ui.tableWidget_3.setColumnCount(3)  # If you have three columns as mentioned earlier
 
-        if top_tracks is None:
-            print("La liste de pistes est vide.")
-            return
-        else:
-            print('la liste est remplies')
-            
-        self.ui.tableWidget_3.setRowCount(len(top_tracks))
-        self.ui.tableWidget_3.setColumnCount(1)
-        self.ui.tableWidget_3.setColumnWidth(1, 1280)
+        for i, track in enumerate(unique_tracks):
+            row = i // 3
+            column = i % 3
+            track_name = QTableWidgetItem(track['name'] if 'name' in track else 'Unknown Name')
+            track_name.setData(Qt.UserRole, track['id'])  # Store the track ID
+            self.ui.tableWidget_3.setItem(row, column, track_name)
 
-        for i, track in enumerate(top_tracks):
-            if 'name' in track:
-                track_name = QTableWidgetItem(track['name'])
+        # Adjust the width of the columns if necessary
+        for i in range(3):
+            self.ui.tableWidget_3.setColumnWidth(i, 210)  # Adjust width as needed
+
+    def play_selected_track(self):
+        try:
+            selected_row = self.ui.tableWidget_3.currentRow()
+            selected_track_item = self.ui.tableWidget_3.item(selected_row, 0)
+
+            if selected_track_item is not None:
+                selected_track_id = selected_track_item.data(Qt.UserRole)
+
+                if selected_track_id:
+                    self.sp_manager.play_music(track_id=selected_track_id)
+                else:
+                    print("No track ID selected.")
             else:
-                track_name = QTableWidgetItem("Nom de la piste indisponible")
+                print("No track selected.")
+        except Exception as e:
+            print(f"Error while attempting to play the track: {e}")
 
-            self.ui.tableWidget_3.setItem(i, 1, track_name)
-                        
-    def generate_chords(self):
-        print("generate_chords clicked!")
-
-    def update_progress_bar(self, value):
-        if 0 <= value <= 100:
-            self.ui.progressBar_3.setValue(value)
-        else:
-            print("Invalid value for progress bar.")
+    def launch_spotify(self):
+        try:
+            subprocess.Popen(["spotify"])
+        except Exception as e:
+            print(f"Error launching Spotify: {e}")
