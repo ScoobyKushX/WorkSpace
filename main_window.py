@@ -1,19 +1,25 @@
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem
-from ui_main_window import Ui_MainWindow
-from spotify_manager import SpotifyManager
+from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QWidget, QVBoxLayout
+from ui_main_window import Ui_MainWindow as MainWindow
+from Musique.spotify_manager import SpotifyManager
 import subprocess
 from PySide6.QtCore import Qt
+from audio_visual import RealTimeAudioVisualizer
+from audio_visual import OpenGLVisualizer  # Import the visualizer class
 
-class MainWindow(QMainWindow):
+class OpenGL3DVisual(QMainWindow):
     def __init__(self, parent=None):
+        super(OpenGL3DVisual, self).__init__(parent)
+        self.layout = QVBoxLayout(self)
+
+        self.opengl_widget = OpenGLVisualizer(self)
+        self.layout.addWidget(self.opengl_widget)
         super(MainWindow, self).__init__(None)
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
-        self.ui = Ui_MainWindow()  # Create an instance of the user interface
+        self.ui = MainWindow()  # Create an instance of the user interface
         self.ui.setupUI(self)  # Load the user interface
-
+        RealTimeAudioVisualizer(self.ui.opengl3dvisual_3)
 
         self.populate_playlist_table()
-        print('RIEN RIEN RIEN RIEN RIEN')
 
         self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
         self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
@@ -47,7 +53,7 @@ class MainWindow(QMainWindow):
 
         # Adjust the width of the columns if necessary
         for i in range(3):
-            self.ui.tableWidget_3.setColumnWidth(i, 210)  # Adjust width as needed
+            self.ui.tableWidget_3.setColumnWidth(i, 220)  # Adjust width as needed
 
     def play_selected_track(self):
         try:
