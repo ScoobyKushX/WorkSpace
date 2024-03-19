@@ -1,7 +1,8 @@
 import numpy as np
 import sounddevice as sd
 from Musique.fft import getFFT
-
+from Musique.StreamReaderPyAudio import Stream_Reader
+from Musique.StreamReaderSoundDevice import Stream_Reader as sdReader
 class Stream_Analyzer:
     """
     Classe pour analyser le flux audio en temps réel, effectuer une transformation de Fourier (FFT),

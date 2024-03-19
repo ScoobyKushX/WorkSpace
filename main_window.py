@@ -5,15 +5,18 @@ import subprocess
 from PySide6.QtCore import Qt
 from audio_visual import RealTimeAudioVisualizer
 from audio_visual import OpenGLVisualizer  # Import the visualizer class
-
-class OpenGL3DVisual(QMainWindow):
+from Musique.StreamAnalyzer import Stream_Analyzer
+class MainWindowClass(QMainWindow):
     def __init__(self, parent=None):
-        super(OpenGL3DVisual, self).__init__(parent)
+        super(self.ui.opengl3dvisual_3, self).__init__(parent)
         self.layout = QVBoxLayout(self)
-
+        
         self.opengl_widget = OpenGLVisualizer(self)
         self.layout.addWidget(self.opengl_widget)
         super(MainWindow, self).__init__(None)
+        self.ear = Stream_Analyzer
+        self.init_visualizer_update()
+        
         self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
         self.ui = MainWindow()  # Create an instance of the user interface
         self.ui.setupUI(self)  # Load the user interface
@@ -80,3 +83,6 @@ class OpenGL3DVisual(QMainWindow):
             subprocess.Popen(["spotify"])
         except Exception as e:
             print(f"Error launching Spotify: {e}")
+
+    def init_visualizer_update(self):
+        p

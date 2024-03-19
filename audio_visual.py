@@ -7,6 +7,10 @@ from OpenGL.GL import (glBegin, glEnd, glVertex3f, glColor3f, glLoadIdentity,
                        glMatrixMode, gluPerspective, GL_LINE_STRIP,
                        GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT,
                        GL_PROJECTION, GL_MODELVIEW)
+from Musique.StreamReaderPyAudio import Stream_Reader
+from Musique.StreamReaderSoundDevice import Stream_Reader as sdReader
+
+
 
 class OpenGLVisualizer(QOpenGLWidget):
     def __init__(self, parent=None):
