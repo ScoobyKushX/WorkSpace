@@ -1,7 +1,7 @@
 
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from main_window import MainWindow, MainWindowClass
+from main_window import MainWindowClass
 
 
 

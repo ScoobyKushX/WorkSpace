@@ -1,45 +1,25 @@
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QWidget, QVBoxLayout, QGridLayout, QHBoxLayout
-from ui_main_window import Ui_MainWindow as MainWindow
+from PySide6.QtWidgets import QMainWindow, QApplication
+from ui_main_window import Ui_MainWindow
 from Musique.spotify_manager import SpotifyManager
-import subprocess
-from PySide6.QtCore import Qt
-from audio_visual import OpenGLBarWidget  # Import the visualizer class
+from audio_visual import OpenGLBarWidget
 from Musique.StreamAnalyzer import Stream_Analyzer
+
 class MainWindowClass(QMainWindow):
     def __init__(self, parent=None):
-        
-        super(MainWindow).__init__(parent)
-        self.ui = MainWindow()
-        self.ui.gridLayout_11 = QGridLayout(self)
-        self.ui.gridLayout_12 = QGridLayout(self)
-        self.ui.gridLayout_13 = QGridLayout(self)
-        self.ui.gridLayout_14 = QGridLayout(self)
-        self.ui.gridLayout_15 = QGridLayout(self)
-        
-        self.ui.layout = QGridLayout(self)
-        self.ui.gridLayoutWidget_11 = QWidget(self)
-        self.ui.gridLayoutWidget_9 = QWidget(self)
-        self.ui.gridLayoutWidget_15 = QWidget(self)
-        self.ui.gridLayoutWidget_7 = QWidget(self)
-        self.ui.gridLayoutWidget_10 = QWidget(self)
-        self.ui.gridLayout_14 = QGridLayout(self)
-        
+        super(MainWindowClass, self).__init__(parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUI(self)
         self.opengl_widget = OpenGLBarWidget(self)
-        self.layout.addWidget(self.opengl_widget)
-        super(MainWindow, self).__init__(None)
-        self.ear = Stream_Analyzer
-        self.init_visualizer_update()
-        
-        self.sp_manager = SpotifyManager()  # Initialise SpotifyManager  # Create an instance of the user interface
-        self.ui.setupUI(self)  # Load the user interface
-        OpenGLBarWidget(self.ui.opengl3dvisual_3)
+        self.ui.horizontalLayout_7.addWidget(self.ui.opengl3dvisual_3)  # Replace 'someLayout' with the actual layout name
+        self.sp_manager = SpotifyManager()
+        self.ear = Stream_Analyzer()
+        # Other initializations and method definitions...
 
+        self.sp_manager = SpotifyManager()
+
+        # Populate playlist, connect signals, etc.
         self.populate_playlist_table()
 
-        self.ui.gridLayout_14.addWidget(self.ui.tabWidget_3, 0, 0, 1, 1)
-        self.ui.gridLayout_14.addWidget(self.ui.progressBar_3, 1, 0, 1, 1)
-        self.ui.progressBar_3.setMaximum(100)
-        self.ui.tableWidget_3.itemClicked.connect(self.play_selected_track)
 
     def on_button_click(self):
         try:
@@ -97,4 +77,8 @@ class MainWindowClass(QMainWindow):
             print(f"Error launching Spotify: {e}")
 
     def init_visualizer_update(self):
-        p
+        self.ui.opengl3dvisual_3.timer = QTimer(self)
+        self.ear = Stream_Analyzer()
+        self.ear.start()
+        self.timer.timeout.connect(self.update_visualizer)
+        self.timer.start(self.ear.updates_per_second, 1000)

@@ -26,15 +26,15 @@ class OpenGLBarWidget(QOpenGLWidget):
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT)
-        bar_width = 0.2
-        bar_height = 2.0
         for i in range(50):
-            x = i * (bar_width + 0.1) - 25  # Adjust the -25 offset as needed
+            x = i * 0.04 - 1  # Adjust to space bars evenly
+            y = 0
+            height = 2  # Or dynamically update based on FFT data
             glBegin(GL_QUADS)
-            glVertex2f(x, 0)
-            glVertex2f(x + bar_width, 0)
-            glVertex2f(x + bar_width, bar_height)
-            glVertex2f(x, bar_height)
+            glVertex2f(x, y)
+            glVertex2f(x + 0.02, y)
+            glVertex2f(x + 0.02, y + height)
+            glVertex2f(x, y + height)
             glEnd()
     def draw_fft(self):
         glBegin(GL_LINE_STRIP)
