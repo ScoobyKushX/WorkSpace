@@ -1,6 +1,7 @@
 import numpy as np
 import sounddevice as sd
 from Musique.fft import getFFT
+from scipy.fft import fft
 from Musique.StreamReaderPyAudio import Stream_Reader
 from Musique.StreamReaderSoundDevice import Stream_Reader as sdReader
 class Stream_Analyzer:
@@ -19,6 +20,8 @@ class Stream_Analyzer:
         :param updates_per_second: Nombre de mises à jour par seconde.
         :param n_frequency_bins: Nombre de bins de fréquence à utiliser pour l'analyse.
         """
+        self.latest_fft_data = None
+
         self.device = device
         self.rate = rate
         self.updates_per_second = updates_per_second
@@ -31,6 +34,11 @@ class Stream_Analyzer:
         self.stream.start()
 
     def audio_callback(self, indata, frames, time, status):
+        # Convert 'indata' to a numpy array if it's not already one
+        indata = np.array(Stream_Reader.input_device(self.device)) or np.array(Stream_Reader.stream_start(self.device))
+        audio_data = np.frombuffer(indata, dtype=np.float32)
+        # Apply FFT and store the result
+        self.latest_fft_data = np.abs(fft(audio_data))
         """
         Fonction de rappel appelée par le flux d'entrée audio pour traiter les données en temps réel.
 
@@ -43,7 +51,10 @@ class Stream_Analyzer:
             print(status)
         # Mise à jour des données FFT en temps réel
         self.fft = np.abs(getFFT(indata[:, 0], self.rate, self.FFT_window_size))
-
+    
+    def get_latest_fft_data(self):
+        return self.latest_fft_data
+    
     def get_frequency_bins(self):
         """
         Récupère les valeurs actuelles de la FFT pour chaque bin de fréquence.

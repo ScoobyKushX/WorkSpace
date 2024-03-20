@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow, QApplication, QTableWidget, QTableWidgetItem
 from ui_main_window import Ui_MainWindow
 from Musique.spotify_manager import SpotifyManager
 from audio_visual import OpenGLBarWidget
@@ -9,7 +9,7 @@ class MainWindowClass(QMainWindow):
         super(MainWindowClass, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUI(self)
-        self.opengl_widget = OpenGLBarWidget(self)
+        self.ui.opengl3dvisual_3 = OpenGLBarWidget(self)
         self.ui.horizontalLayout_7.addWidget(self.ui.opengl3dvisual_3)  # Replace 'someLayout' with the actual layout name
         self.sp_manager = SpotifyManager()
         self.ear = Stream_Analyzer()
@@ -80,5 +80,5 @@ class MainWindowClass(QMainWindow):
         self.ui.opengl3dvisual_3.timer = QTimer(self)
         self.ear = Stream_Analyzer()
         self.ear.start()
-        self.timer.timeout.connect(self.update_visualizer)
+        self.timer.timeout.connect(self.init_visualizer_update)
         self.timer.start(self.ear.updates_per_second, 1000)

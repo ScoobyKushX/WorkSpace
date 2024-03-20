@@ -8,6 +8,6 @@ from main_window import MainWindowClass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    MainWindow = MainWindowClass(QMainWindow)
+    MainWindow = MainWindowClass()
     MainWindow.show()
     sys.exit(app.exec())
