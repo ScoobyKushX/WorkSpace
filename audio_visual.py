@@ -1,21 +1,18 @@
-# OpenGLVisualizer.py
-
+from PySide6.QtWidgets import QApplication
 from PySide6.QtOpenGLWidgets import QOpenGLWidget
+from PySide6.QtCore import Qt
+import sys
+from OpenGL.GL import glBegin, glEnd, glVertex2f, glClear, GL_QUADS, GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, GL_STENCIL, GL_STENCIL_BUFFER_BIT
+from OpenGL.GLU import gluPerspective, gluLookAt, gluOrtho2D
+from OpenGL.GL import glViewport, glMatrixMode, glLoadIdentity, glTranslatef, glScale, glLight, glClearColor, GL_PROJECTION, GL_MODELVIEW, GL_LINE_STRIP, glColor3f,glVertex3f
 import numpy as np
-from OpenGL.GL import (glBegin, glEnd, glVertex3f, glColor3f, glLoadIdentity,
-                       glTranslatef, glClear, glClearColor, glViewport,
-                       glMatrixMode, gluPerspective, GL_LINE_STRIP,
-                       GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT,
-                       GL_PROJECTION, GL_MODELVIEW)
-from Musique.StreamReaderPyAudio import Stream_Reader
-from Musique.StreamReaderSoundDevice import Stream_Reader as sdReader
-
-
-
-class OpenGLVisualizer(QOpenGLWidget):
+from scipy import fft
+from Musique.fft import getFFT
+class OpenGLBarWidget(QOpenGLWidget):
     def __init__(self, parent=None):
-        super(OpenGLVisualizer, self).__init__(parent)
-        self.fft_data = np.random.rand(512)  # Dummy FFT data
+        super(OpenGLBarWidget, self).__init__(parent)
+    
+        self.fft_data = getFFT(super(getFFT), 44100, 512, True)  # Dummy FFT data
 
     def initializeGL(self):
         glClearColor(0.0, 0.0, 0.0, 1.0)
@@ -28,11 +25,17 @@ class OpenGLVisualizer(QOpenGLWidget):
         glMatrixMode(GL_MODELVIEW)
 
     def paintGL(self):
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        glLoadIdentity()
-        glTranslatef(0.0, 0.0, -6.0)
-        self.draw_fft()
-
+        glClear(GL_COLOR_BUFFER_BIT)
+        bar_width = 0.2
+        bar_height = 2.0
+        for i in range(50):
+            x = i * (bar_width + 0.1) - 25  # Adjust the -25 offset as needed
+            glBegin(GL_QUADS)
+            glVertex2f(x, 0)
+            glVertex2f(x + bar_width, 0)
+            glVertex2f(x + bar_width, bar_height)
+            glVertex2f(x, bar_height)
+            glEnd()
     def draw_fft(self):
         glBegin(GL_LINE_STRIP)
         for i, val in enumerate(self.fft_data):

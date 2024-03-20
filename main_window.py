@@ -1,26 +1,38 @@
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QWidget, QVBoxLayout
+from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QWidget, QVBoxLayout, QGridLayout, QHBoxLayout
 from ui_main_window import Ui_MainWindow as MainWindow
 from Musique.spotify_manager import SpotifyManager
 import subprocess
 from PySide6.QtCore import Qt
-from audio_visual import RealTimeAudioVisualizer
-from audio_visual import OpenGLVisualizer  # Import the visualizer class
+from audio_visual import OpenGLBarWidget  # Import the visualizer class
 from Musique.StreamAnalyzer import Stream_Analyzer
 class MainWindowClass(QMainWindow):
     def __init__(self, parent=None):
-        super(self.ui.opengl3dvisual_3, self).__init__(parent)
-        self.layout = QVBoxLayout(self)
         
-        self.opengl_widget = OpenGLVisualizer(self)
+        super(MainWindow).__init__(parent)
+        self.ui = MainWindow()
+        self.ui.gridLayout_11 = QGridLayout(self)
+        self.ui.gridLayout_12 = QGridLayout(self)
+        self.ui.gridLayout_13 = QGridLayout(self)
+        self.ui.gridLayout_14 = QGridLayout(self)
+        self.ui.gridLayout_15 = QGridLayout(self)
+        
+        self.ui.layout = QGridLayout(self)
+        self.ui.gridLayoutWidget_11 = QWidget(self)
+        self.ui.gridLayoutWidget_9 = QWidget(self)
+        self.ui.gridLayoutWidget_15 = QWidget(self)
+        self.ui.gridLayoutWidget_7 = QWidget(self)
+        self.ui.gridLayoutWidget_10 = QWidget(self)
+        self.ui.gridLayout_14 = QGridLayout(self)
+        
+        self.opengl_widget = OpenGLBarWidget(self)
         self.layout.addWidget(self.opengl_widget)
         super(MainWindow, self).__init__(None)
         self.ear = Stream_Analyzer
         self.init_visualizer_update()
         
-        self.sp_manager = SpotifyManager()  # Initialise SpotifyManager
-        self.ui = MainWindow()  # Create an instance of the user interface
+        self.sp_manager = SpotifyManager()  # Initialise SpotifyManager  # Create an instance of the user interface
         self.ui.setupUI(self)  # Load the user interface
-        RealTimeAudioVisualizer(self.ui.opengl3dvisual_3)
+        OpenGLBarWidget(self.ui.opengl3dvisual_3)
 
         self.populate_playlist_table()
 
