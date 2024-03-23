@@ -10,7 +10,7 @@
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt, QEvent, QTimer, QThread, Signal, Slot)
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
@@ -24,9 +24,8 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout
     QScrollBar, QSizePolicy, QSlider, QSpacerItem,
     QStackedWidget, QStatusBar, QTabWidget, QTableWidget,
     QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
-from matplotlib.lines import VertexSelector
 
-
+from qopenglbarwidget import QOpenGLBarWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -53,14 +52,10 @@ class Ui_MainWindow(object):
         self.label_33.setObjectName(u"label_33")
 
         self.verticalLayout_5.addWidget(self.label_33)
-        # For vertical orientation
-        vertical_orientation = Qt.Orientation.Vertical
 
-        # For horizontal orientation
-        horizontal_orientation = Qt.Orientation.Horizontal
         self.horizontalSlider_11 = QSlider(self.verticalLayoutWidget_5)
         self.horizontalSlider_11.setObjectName(u"horizontalSlider_11")
-        self.horizontalSlider_11.setOrientation(horizontal_orientation)
+        self.horizontalSlider_11.setOrientation(Qt.Horizontal)
 
         self.verticalLayout_5.addWidget(self.horizontalSlider_11)
 
@@ -71,7 +66,7 @@ class Ui_MainWindow(object):
 
         self.horizontalSlider_12 = QSlider(self.verticalLayoutWidget_5)
         self.horizontalSlider_12.setObjectName(u"horizontalSlider_12")
-        self.horizontalSlider_12.setOrientation(horizontal_orientation)
+        self.horizontalSlider_12.setOrientation(Qt.Horizontal)
 
         self.verticalLayout_5.addWidget(self.horizontalSlider_12)
 
@@ -82,7 +77,7 @@ class Ui_MainWindow(object):
 
         self.horizontalSlider_13 = QSlider(self.verticalLayoutWidget_5)
         self.horizontalSlider_13.setObjectName(u"horizontalSlider_13")
-        self.horizontalSlider_13.setOrientation(horizontal_orientation)
+        self.horizontalSlider_13.setOrientation(Qt.Horizontal)
 
         self.verticalLayout_5.addWidget(self.horizontalSlider_13)
 
@@ -93,7 +88,7 @@ class Ui_MainWindow(object):
 
         self.horizontalSlider_14 = QSlider(self.verticalLayoutWidget_5)
         self.horizontalSlider_14.setObjectName(u"horizontalSlider_14")
-        self.horizontalSlider_14.setOrientation(horizontal_orientation)
+        self.horizontalSlider_14.setOrientation(Qt.Horizontal)
 
         self.verticalLayout_5.addWidget(self.horizontalSlider_14)
 
@@ -118,7 +113,7 @@ class Ui_MainWindow(object):
         self.widget_15.setObjectName(u"widget_15")
         self.widget_15.setMinimumSize(QSize(1280, 0))
         self.widget_15.setBaseSize(QSize(0, 0))
-        self.opengl3dvisual_3 = QOpenGLWidget(self.widget_15)
+        self.opengl3dvisual_3 = QOpenGLBarWidget(self.widget_15)
         self.opengl3dvisual_3.setObjectName(u"opengl3dvisual_3")
         self.opengl3dvisual_3.setGeometry(QRect(0, 10, 1281, 381))
         self.opengl3dvisual_3.setMinimumSize(QSize(621, 0))
@@ -218,7 +213,7 @@ class Ui_MainWindow(object):
 
         self.verticalSlider_23 = QSlider(self.horizontalLayoutWidget_6)
         self.verticalSlider_23.setObjectName(u"verticalSlider_23")
-        self.verticalSlider_23.setOrientation(vertical_orientation)
+        self.verticalSlider_23.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_8.addWidget(self.verticalSlider_23)
 
@@ -228,7 +223,7 @@ class Ui_MainWindow(object):
 
         self.verticalSlider_24 = QSlider(self.horizontalLayoutWidget_6)
         self.verticalSlider_24.setObjectName(u"verticalSlider_24")
-        self.verticalSlider_24.setOrientation(vertical_orientation)
+        self.verticalSlider_24.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_8.addWidget(self.verticalSlider_24)
 
@@ -240,55 +235,55 @@ class Ui_MainWindow(object):
         self.gridLayout_13.setContentsMargins(0, 0, 0, 0)
         self.verticalSlider_28 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_28.setObjectName(u"verticalSlider_28")
-        self.verticalSlider_28.setOrientation(vertical_orientation)
+        self.verticalSlider_28.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_28, 0, 6, 1, 1)
 
         self.verticalSlider_30 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_30.setObjectName(u"verticalSlider_30")
-        self.verticalSlider_30.setOrientation(vertical_orientation)
+        self.verticalSlider_30.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_30, 0, 5, 1, 1)
 
         self.verticalSlider_31 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_31.setObjectName(u"verticalSlider_31")
-        self.verticalSlider_31.setOrientation(vertical_orientation)
+        self.verticalSlider_31.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_31, 0, 7, 1, 1)
 
         self.verticalSlider_32 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_32.setObjectName(u"verticalSlider_32")
-        self.verticalSlider_32.setOrientation(vertical_orientation)
+        self.verticalSlider_32.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_32, 0, 4, 1, 1)
 
         self.verticalSlider_29 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_29.setObjectName(u"verticalSlider_29")
-        self.verticalSlider_29.setOrientation(vertical_orientation)
+        self.verticalSlider_29.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_29, 0, 2, 1, 1)
 
         self.verticalSlider_33 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_33.setObjectName(u"verticalSlider_33")
-        self.verticalSlider_33.setOrientation(vertical_orientation)
+        self.verticalSlider_33.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_33, 0, 3, 1, 1)
 
         self.verticalSlider_26 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_26.setObjectName(u"verticalSlider_26")
-        self.verticalSlider_26.setOrientation(vertical_orientation)
+        self.verticalSlider_26.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_26, 0, 0, 1, 1)
 
         self.verticalSlider_27 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_27.setObjectName(u"verticalSlider_27")
-        self.verticalSlider_27.setOrientation(vertical_orientation)
+        self.verticalSlider_27.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_27, 0, 8, 1, 1)
 
         self.verticalSlider_25 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_25.setObjectName(u"verticalSlider_25")
-        self.verticalSlider_25.setOrientation(vertical_orientation)
+        self.verticalSlider_25.setOrientation(Qt.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_25, 0, 1, 1, 1)
 
@@ -335,7 +330,7 @@ class Ui_MainWindow(object):
         self.verticalScrollBar_4 = QScrollBar(self.scrollAreaWidgetContents_4)
         self.verticalScrollBar_4.setObjectName(u"verticalScrollBar_4")
         self.verticalScrollBar_4.setGeometry(QRect(1860, -21, 20, 331))
-        self.verticalScrollBar_4.setOrientation(vertical_orientation)
+        self.verticalScrollBar_4.setOrientation(Qt.Vertical)
         self.widget_soundcloud_3 = QWidget(self.scrollAreaWidgetContents_4)
         self.widget_soundcloud_3.setObjectName(u"widget_soundcloud_3")
         self.widget_soundcloud_3.setGeometry(QRect(1149, -11, 691, 311))
@@ -401,43 +396,43 @@ class Ui_MainWindow(object):
 
         self.verticalSlider_40 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_40.setObjectName(u"verticalSlider_40")
-        self.verticalSlider_40.setOrientation(vertical_orientation)
+        self.verticalSlider_40.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_40)
 
         self.verticalSlider_39 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_39.setObjectName(u"verticalSlider_39")
-        self.verticalSlider_39.setOrientation(vertical_orientation)
+        self.verticalSlider_39.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_39)
 
         self.verticalSlider_38 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_38.setObjectName(u"verticalSlider_38")
-        self.verticalSlider_38.setOrientation(vertical_orientation)
+        self.verticalSlider_38.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_38)
 
         self.verticalSlider_37 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_37.setObjectName(u"verticalSlider_37")
-        self.verticalSlider_37.setOrientation(vertical_orientation)
+        self.verticalSlider_37.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_37)
 
         self.verticalSlider_36 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_36.setObjectName(u"verticalSlider_36")
-        self.verticalSlider_36.setOrientation(vertical_orientation)
+        self.verticalSlider_36.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_36)
 
         self.verticalSlider_35 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_35.setObjectName(u"verticalSlider_35")
-        self.verticalSlider_35.setOrientation(vertical_orientation)
+        self.verticalSlider_35.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_35)
 
         self.verticalSlider_34 = QSlider(self.horizontalLayoutWidget_8)
         self.verticalSlider_34.setObjectName(u"verticalSlider_34")
-        self.verticalSlider_34.setOrientation(vertical_orientation)
+        self.verticalSlider_34.setOrientation(Qt.Vertical)
 
         self.horizontalLayout_10.addWidget(self.verticalSlider_34)
 
@@ -560,7 +555,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_15 = QSlider(self.tab_AI_3)
         self.horizontalSlider_15.setObjectName(u"horizontalSlider_15")
         self.horizontalSlider_15.setGeometry(QRect(130, 310, 481, 16))
-        self.horizontalSlider_15.setOrientation(horizontal_orientation)
+        self.horizontalSlider_15.setOrientation(Qt.Horizontal)
         self.label_48 = QLabel(self.tab_AI_3)
         self.label_48.setObjectName(u"label_48")
         self.label_48.setGeometry(QRect(0, 310, 121, 16))

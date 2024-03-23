@@ -5,19 +5,19 @@ from PySide6.QtWidgets import QTableWidgetItem
 from PySide6.QtCore import Qt
 class SpotifyManager:
     def __init__(self):
-        self.sp = None
         try:
             scope = "user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-private user-top-read user-read-recently-played"
             self.auth_manager = SpotifyOAuth(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET, redirect_uri=SPOTIFY_REDIRECT_URI, scope=scope, cache_path="token_cache.txt")
+            self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
             if not self.auth_manager.get_cached_token():
                 self.auth_manager.get_access_token(as_dict=False)
-            self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
         except Exception as e:
             print(f"An error occurred while authenticating with Spotify: {str(e)}")
 
     def refresh_token(self):
         if self.auth_manager.is_token_expired(self.auth_manager.get_cached_token()):
             self.auth_manager.refresh_access_token(self.auth_manager.get_cached_token()['refresh_token'])
+
 
     def get_unique_liked_songs(self):
         self.refresh_token()

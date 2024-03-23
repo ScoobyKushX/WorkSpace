@@ -1,52 +1,57 @@
-from PySide6.QtWidgets import QApplication
 from PySide6.QtOpenGLWidgets import QOpenGLWidget
-from PySide6.QtCore import Qt, QTimer
-import sys
-from OpenGL.GL import glBegin, glEnd, glVertex2f, glClear, GL_QUADS, GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, GL_STENCIL, GL_STENCIL_BUFFER_BIT
-from OpenGL.GLU import gluPerspective, gluLookAt, gluOrtho2D
-from OpenGL.GL import glViewport, glMatrixMode, glLoadIdentity, glTranslatef, glScale, glLight, glClearColor, GL_PROJECTION, GL_MODELVIEW, GL_LINE_STRIP, glColor3f,glVertex3f
+from PySide6.QtCore import QTimer
+from OpenGL.GL import GL_QUADS, GL_LINES, GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, GL_POLYGON, glClear, glLoadIdentity, glColor3f, glClearColor, glBegin, glVertex2f, glEnd, glViewport
+from OpenGL.GLU import gluOrtho2D, gluPerspective
 import numpy as np
-from scipy import fft
-from Musique.StreamAnalyzer import Stream_Analyzer
 from Musique.StreamReaderPyAudio import Stream_Reader
-from Musique.fft import getFFT
-
-
+from Musique.StreamAnalyzer import Stream_Analyzer
+from Musique.fft import FFTget  
 class OpenGLBarWidget(QOpenGLWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, rate=44800, updates_per_second=100, bar_color=(1.0, 0.0, 0.0)):
         super(OpenGLBarWidget, self).__init__(parent)
-        self.analyzer = Stream_Analyzer()
-        # Assume we have a mechanism to start the audio stream and call `audio_callback`
-        self.fft_data = self.analyzer.get_latest_fft_data()
-        self.analyzer.audio_callback(self.fft_data, 1024, 1, True)
-        self.initializeGL()
-        self.resizeGL(self.width(), self.height())
-        self.show()
+        self.stream_reader = Stream_Reader(rate=rate, updates_per_second=updates_per_second)
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.updateGeometry)
-        self.timer.start(1)
-        
+        self.timer.timeout.connect(self.update)
+        self.timer.start(1000 // updates_per_second)  # Update rate in milliseconds
+        self.bar_color = bar_color
+
     def initializeGL(self):
         glClearColor(0.0, 0.0, 0.0, 1.0)
 
+    def paintGL(self):
+        data = self.stream_reader.read()
+        fft_data = FFTget.getFFT(data, self.stream_reader.rate)
+
+        glClear(int(GL_COLOR_BUFFER_BIT) | int(GL_DEPTH_BUFFER_BIT))
+        glLoadIdentity()
+        gluOrtho2D(0, 1, 0, 1)
+
+        glColor3f(*self.bar_color)
+        bar_width = 1.0 / len(fft_data*2)
+        for i, val in enumerate(fft_data):
+            glBegin(GL_QUADS)
+            glVertex2f(i * bar_width, 0)
+            glVertex2f(i * bar_width, val)
+            glVertex2f((i + 1) * bar_width, val)
+            glVertex2f((i + 1) * bar_width, 0)
+            glEnd()
+
     def resizeGL(self, w, h):
         glViewport(0, 0, w, h)
-        glMatrixMode(GL_PROJECTION)
-        glLoadIdentity()
-        gluPerspective(45, float(w) / h, 0.1, 100.0)
-        glMatrixMode(GL_MODELVIEW)
 
-    def paintGL(self):
-        glClear(GL_COLOR_BUFFER_BIT)
-        if self.fft_data is not None:
-            for i, val in enumerate(self.fft_data[:50]):  # Assuming you want to display the first 50 FFT values
-                x = i * 0.04 - 1
-                y = 0
-                height = val  # Scale this value based on your visualization needs
-                glBegin(GL_QUADS)
-                glVertex2f(x, y)
-                glVertex2f(x + 0.02, y)
-                glVertex2f(x + 0.02, y + height)
-                glVertex2f(x, y + height)
-                glEnd()
+    def closeEvent(self, event):
+        self.stream_reader.close()
+        event.accept()
 
+    def get_frequency_range(self, rate):
+        chunk_size = len(self.fft_data) * 2  # Assume FFT size is double the bar count
+        return np.fft.rfftfreq(chunk_size, d=1.0 / rate)
+
+    def set_bass_gain(self, gain): self.bass_gain = gain
+    def set_mid_gain(self, gain): self.mid_gain = gain
+    def set_high_gain(self, gain): self.high_gain = gain
+    def set_visual_opacity(self, opacity): self.visual_opacity = opacity
+    def set_start_color(self, r, g, b): self.start_color = [r, g, b]
+    def set_end_color(self, r, g, b): self.end_color = [r, g, b]
+    def set_bar_width(self, width): self.bar_width = width
+    def set_scale(self, scale): self.scale = scale

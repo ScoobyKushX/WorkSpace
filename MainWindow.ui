@@ -126,7 +126,7 @@
          <height>0</height>
         </size>
        </property>
-       <widget class="QOpenGLWidget" name="opengl3dvisual_3">
+       <widget class="QOpenGLBarWidget" name="opengl3dvisual_3">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -508,7 +508,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
              <string>Soundcloud Player</string>
             </property>
            </widget>
-           <widget class="QWebEngineView" name="webEngineView">
+           <widget class="QWebEngineView" name="webEngineView" native="true">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -517,7 +517,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
               <height>231</height>
              </rect>
             </property>
-            <property name="url">
+            <property name="url" stdset="0">
              <url>
               <string>about:blank</string>
              </url>
@@ -902,7 +902,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
      <x>0</x>
      <y>0</y>
      <width>1920</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -917,7 +917,12 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
   <customwidget>
    <class>QWebEngineView</class>
    <extends>QWidget</extends>
-   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+   <header>QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+  <customwidget>
+   <class>QOpenGLBarWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">qopenglbarwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
