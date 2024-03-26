@@ -1,6 +1,14 @@
 import numpy as np
+"""
+    The code defines a class `Stream_Analyzer` in Python for real-time audio stream analysis using Fast
+    Fourier Transform (FFT) with methods to capture and process audio data.
+    
+    :param f: Here's a brief explanation of the parameters used in the `Stream_Analyzer` class:
+    :return: The `round_up_to_even` function returns the next highest even number after rounding up the
+    input number `f`.
+    """
 import sounddevice as sd
-from Musique.fft import getFFT
+from Musique.fft import FFTget
 from scipy.fft import fft
 from Musique.StreamReaderPyAudio import Stream_Reader
 from Musique.StreamReaderSoundDevice import Stream_Reader as sdReader
@@ -10,7 +18,7 @@ class Stream_Analyzer:
     et récupérer les données de fréquence pour la visualisation.
     """
 
-    def __init__(self, device=None, rate=44100, FFT_window_size_ms=50, updates_per_second=100, n_frequency_bins=51):
+    def __init__(self, device=None, rate=44100, FFT_window_size_ms=50, updates_per_second=100, n_frequency_bins=102):
         """
         Initialisation de l'analyseur de flux audio.
 
@@ -34,24 +42,21 @@ class Stream_Analyzer:
         self.stream.start()
 
     def audio_callback(self, indata, frames, time, status):
-        # Convert 'indata' to a numpy array if it's not already one
-        indata = np.array(Stream_Reader.input_device(self.device)) or np.array(Stream_Reader.stream_start(self.device))
-        audio_data = np.frombuffer(indata, dtype=np.float32)
-        # Apply FFT and store the result
-        self.latest_fft_data = np.abs(fft(audio_data))
-        """
-        Fonction de rappel appelée par le flux d'entrée audio pour traiter les données en temps réel.
-
-        :param indata: Les données audio capturées.
-        :param frames: Le nombre de frames dans les données audio.
-        :param time: L'horodatage des données audio.
-        :param status: Le statut de la capture audio.
-        """
+    # Affiche le statut si une erreur est signalée
         if status:
             print(status)
-        # Mise à jour des données FFT en temps réel
-        self.fft = np.abs(getFFT(indata[:, 0], self.rate, self.FFT_window_size))
-    
+
+        # Traite les données seulement si 'indata' n'est pas None
+        if indata is not None:
+            # Applique la FFT et stocke le résultat dans `latest_fft_data`
+            fft_instance = FFTget()
+            self.latest_fft_data = np.abs(fft_instance.getFFT(indata, self.rate))
+# Mise à jour des données FFT en temps réel
+            
+        else:
+            # Gérer le cas où 'indata' est None si nécessaire
+            print("Aucune donnée audio reçue.")
+
     def get_latest_fft_data(self):
         return self.latest_fft_data
     
