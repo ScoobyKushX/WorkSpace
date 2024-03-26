@@ -1,0 +1,7 @@
+pyside6
+numpy
+pyaudio
+pyopengl
+sounddevice
+scipy
+spotipy

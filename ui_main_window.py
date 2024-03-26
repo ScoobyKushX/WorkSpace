@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindow.ui'
+## Form generated from reading UI file 'mainwindow.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -10,7 +10,7 @@
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt, QEvent, QTimer, QThread, Signal, Slot)
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
@@ -18,15 +18,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtOpenGLWidgets import QOpenGLWidget
 from PySide6.QtQuickWidgets import QQuickWidget
 from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout,
-    QHeaderView, QLCDNumber, QLabel, QMainWindow,
-    QMenuBar, QProgressBar, QPushButton, QScrollArea,
-    QScrollBar, QSizePolicy, QSlider, QSpacerItem,
-    QStackedWidget, QStatusBar, QTabWidget, QTableWidget,
-    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
-from matplotlib.lines import VertexSelector
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
+    QHBoxLayout, QHeaderView, QLCDNumber, QLabel,
+    QMainWindow, QMenuBar, QProgressBar, QPushButton,
+    QScrollArea, QScrollBar, QSizePolicy, QSlider,
+    QSpacerItem, QStackedWidget, QStatusBar, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
+    QWidget)
 
-
+from audio_visual import OpenGLBarWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -43,74 +43,51 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.widget_12 = QWidget(self.horizontalLayoutWidget)
         self.widget_12.setObjectName(u"widget_12")
-        self.verticalLayoutWidget_5 = QWidget(self.widget_12)
-        self.verticalLayoutWidget_5.setObjectName(u"verticalLayoutWidget_5")
-        self.verticalLayoutWidget_5.setGeometry(QRect(10, 10, 1492, 13004))
-        self.verticalLayout_5 = QVBoxLayout(self.verticalLayoutWidget_5)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.label_33 = QLabel(self.verticalLayoutWidget_5)
-        self.label_33.setObjectName(u"label_33")
+        self.gridLayoutWidget_2 = QWidget(self.widget_12)
+        self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
+        self.gridLayoutWidget_2.setGeometry(QRect(9, 19, 281, 361))
+        self.gridLayout = QGridLayout(self.gridLayoutWidget_2)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.leftLabel_1 = QLabel(self.gridLayoutWidget_2)
+        self.leftLabel_1.setObjectName(u"leftLabel_1")
 
-        self.verticalLayout_5.addWidget(self.label_33)
-        # For vertical orientation
-        vertical_orientation = Qt.Orientation.Vertical
+        self.gridLayout.addWidget(self.leftLabel_1, 2, 0, 1, 1)
 
-        # For horizontal orientation
-        horizontal_orientation = Qt.Orientation.Horizontal
-        self.horizontalSlider_11 = QSlider(self.verticalLayoutWidget_5)
-        self.horizontalSlider_11.setObjectName(u"horizontalSlider_11")
-        self.horizontalSlider_11.setOrientation(horizontal_orientation)
+        self.leftSlider_2 = QSlider(self.gridLayoutWidget_2)
+        self.leftSlider_2.setObjectName(u"leftSlider_2")
+        self.leftSlider_2.setOrientation(Qt.Orientation.Horizontal)
 
-        self.verticalLayout_5.addWidget(self.horizontalSlider_11)
+        self.gridLayout.addWidget(self.leftSlider_2, 5, 0, 1, 1)
 
-        self.label_34 = QLabel(self.verticalLayoutWidget_5)
-        self.label_34.setObjectName(u"label_34")
+        self.leftSlider = QSlider(self.gridLayoutWidget_2)
+        self.leftSlider.setObjectName(u"leftSlider")
+        self.leftSlider.setOrientation(Qt.Orientation.Horizontal)
 
-        self.verticalLayout_5.addWidget(self.label_34)
+        self.gridLayout.addWidget(self.leftSlider, 1, 0, 1, 1)
 
-        self.horizontalSlider_12 = QSlider(self.verticalLayoutWidget_5)
-        self.horizontalSlider_12.setObjectName(u"horizontalSlider_12")
-        self.horizontalSlider_12.setOrientation(horizontal_orientation)
+        self.leftSlider_1 = QSlider(self.gridLayoutWidget_2)
+        self.leftSlider_1.setObjectName(u"leftSlider_1")
+        self.leftSlider_1.setOrientation(Qt.Orientation.Horizontal)
 
-        self.verticalLayout_5.addWidget(self.horizontalSlider_12)
+        self.gridLayout.addWidget(self.leftSlider_1, 3, 0, 1, 1)
 
-        self.label_35 = QLabel(self.verticalLayoutWidget_5)
-        self.label_35.setObjectName(u"label_35")
+        self.leftLabel = QLabel(self.gridLayoutWidget_2)
+        self.leftLabel.setObjectName(u"leftLabel")
 
-        self.verticalLayout_5.addWidget(self.label_35)
+        self.gridLayout.addWidget(self.leftLabel, 0, 0, 1, 1)
 
-        self.horizontalSlider_13 = QSlider(self.verticalLayoutWidget_5)
-        self.horizontalSlider_13.setObjectName(u"horizontalSlider_13")
-        self.horizontalSlider_13.setOrientation(horizontal_orientation)
+        self.leftLabel_2 = QLabel(self.gridLayoutWidget_2)
+        self.leftLabel_2.setObjectName(u"leftLabel_2")
 
-        self.verticalLayout_5.addWidget(self.horizontalSlider_13)
+        self.gridLayout.addWidget(self.leftLabel_2, 4, 0, 1, 1)
 
-        self.label_36 = QLabel(self.verticalLayoutWidget_5)
-        self.label_36.setObjectName(u"label_36")
+        self.verticalScrollBar = QScrollBar(self.gridLayoutWidget_2)
+        self.verticalScrollBar.setObjectName(u"verticalScrollBar")
+        self.verticalScrollBar.setOrientation(Qt.Orientation.Vertical)
 
-        self.verticalLayout_5.addWidget(self.label_36)
+        self.gridLayout.addWidget(self.verticalScrollBar, 0, 1, 3, 1)
 
-        self.horizontalSlider_14 = QSlider(self.verticalLayoutWidget_5)
-        self.horizontalSlider_14.setObjectName(u"horizontalSlider_14")
-        self.horizontalSlider_14.setOrientation(horizontal_orientation)
-
-        self.verticalLayout_5.addWidget(self.horizontalSlider_14)
-
-        self.pushButtonApply_3 = QPushButton(self.verticalLayoutWidget_5)
-        self.pushButtonApply_3.setObjectName(u"pushButtonApply_3")
-
-        self.verticalLayout_5.addWidget(self.pushButtonApply_3)
-
-        self.horizontalSlider_11.raise_()
-        self.label_36.raise_()
-        self.pushButtonApply_3.raise_()
-        self.horizontalSlider_13.raise_()
-        self.label_34.raise_()
-        self.horizontalSlider_12.raise_()
-        self.horizontalSlider_14.raise_()
-        self.label_33.raise_()
-        self.label_35.raise_()
 
         self.horizontalLayout_7.addWidget(self.widget_12)
 
@@ -118,7 +95,7 @@ class Ui_MainWindow(object):
         self.widget_15.setObjectName(u"widget_15")
         self.widget_15.setMinimumSize(QSize(1280, 0))
         self.widget_15.setBaseSize(QSize(0, 0))
-        self.opengl3dvisual_3 = QOpenGLWidget(self.widget_15)
+        self.opengl3dvisual_3 = OpenGLBarWidget(self.widget_15)
         self.opengl3dvisual_3.setObjectName(u"opengl3dvisual_3")
         self.opengl3dvisual_3.setGeometry(QRect(0, 10, 1281, 381))
         self.opengl3dvisual_3.setMinimumSize(QSize(621, 0))
@@ -127,6 +104,54 @@ class Ui_MainWindow(object):
 
         self.widget_16 = QWidget(self.horizontalLayoutWidget)
         self.widget_16.setObjectName(u"widget_16")
+        self.widget_13 = QWidget(self.widget_16)
+        self.widget_13.setObjectName(u"widget_13")
+        self.widget_13.setGeometry(QRect(0, 0, 299, 399))
+        self.gridLayoutWidget_4 = QWidget(self.widget_13)
+        self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
+        self.gridLayoutWidget_4.setGeometry(QRect(9, 19, 281, 361))
+        self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_4)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.rightLabel_1 = QLabel(self.gridLayoutWidget_4)
+        self.rightLabel_1.setObjectName(u"rightLabel_1")
+
+        self.gridLayout_3.addWidget(self.rightLabel_1, 2, 0, 1, 1)
+
+        self.sliderRight_3 = QSlider(self.gridLayoutWidget_4)
+        self.sliderRight_3.setObjectName(u"sliderRight_3")
+        self.sliderRight_3.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_3.addWidget(self.sliderRight_3, 5, 0, 1, 1)
+
+        self.sliderRight_1 = QSlider(self.gridLayoutWidget_4)
+        self.sliderRight_1.setObjectName(u"sliderRight_1")
+        self.sliderRight_1.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_3.addWidget(self.sliderRight_1, 1, 0, 1, 1)
+
+        self.sliderRight_2 = QSlider(self.gridLayoutWidget_4)
+        self.sliderRight_2.setObjectName(u"sliderRight_2")
+        self.sliderRight_2.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_3.addWidget(self.sliderRight_2, 3, 0, 1, 1)
+
+        self.rightLabel = QLabel(self.gridLayoutWidget_4)
+        self.rightLabel.setObjectName(u"rightLabel")
+
+        self.gridLayout_3.addWidget(self.rightLabel, 0, 0, 1, 1)
+
+        self.rightLabel_2 = QLabel(self.gridLayoutWidget_4)
+        self.rightLabel_2.setObjectName(u"rightLabel_2")
+
+        self.gridLayout_3.addWidget(self.rightLabel_2, 4, 0, 1, 1)
+
+        self.verticalScrollBar_3 = QScrollBar(self.gridLayoutWidget_4)
+        self.verticalScrollBar_3.setObjectName(u"verticalScrollBar_3")
+        self.verticalScrollBar_3.setOrientation(Qt.Orientation.Vertical)
+
+        self.gridLayout_3.addWidget(self.verticalScrollBar_3, 0, 1, 3, 1)
+
 
         self.horizontalLayout_7.addWidget(self.widget_16)
 
@@ -218,7 +243,7 @@ class Ui_MainWindow(object):
 
         self.verticalSlider_23 = QSlider(self.horizontalLayoutWidget_6)
         self.verticalSlider_23.setObjectName(u"verticalSlider_23")
-        self.verticalSlider_23.setOrientation(vertical_orientation)
+        self.verticalSlider_23.setOrientation(Qt.Orientation.Vertical)
 
         self.horizontalLayout_8.addWidget(self.verticalSlider_23)
 
@@ -228,7 +253,7 @@ class Ui_MainWindow(object):
 
         self.verticalSlider_24 = QSlider(self.horizontalLayoutWidget_6)
         self.verticalSlider_24.setObjectName(u"verticalSlider_24")
-        self.verticalSlider_24.setOrientation(vertical_orientation)
+        self.verticalSlider_24.setOrientation(Qt.Orientation.Vertical)
 
         self.horizontalLayout_8.addWidget(self.verticalSlider_24)
 
@@ -240,55 +265,55 @@ class Ui_MainWindow(object):
         self.gridLayout_13.setContentsMargins(0, 0, 0, 0)
         self.verticalSlider_28 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_28.setObjectName(u"verticalSlider_28")
-        self.verticalSlider_28.setOrientation(vertical_orientation)
+        self.verticalSlider_28.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_28, 0, 6, 1, 1)
 
         self.verticalSlider_30 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_30.setObjectName(u"verticalSlider_30")
-        self.verticalSlider_30.setOrientation(vertical_orientation)
+        self.verticalSlider_30.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_30, 0, 5, 1, 1)
 
         self.verticalSlider_31 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_31.setObjectName(u"verticalSlider_31")
-        self.verticalSlider_31.setOrientation(vertical_orientation)
+        self.verticalSlider_31.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_31, 0, 7, 1, 1)
 
         self.verticalSlider_32 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_32.setObjectName(u"verticalSlider_32")
-        self.verticalSlider_32.setOrientation(vertical_orientation)
+        self.verticalSlider_32.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_32, 0, 4, 1, 1)
 
         self.verticalSlider_29 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_29.setObjectName(u"verticalSlider_29")
-        self.verticalSlider_29.setOrientation(vertical_orientation)
+        self.verticalSlider_29.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_29, 0, 2, 1, 1)
 
         self.verticalSlider_33 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_33.setObjectName(u"verticalSlider_33")
-        self.verticalSlider_33.setOrientation(vertical_orientation)
+        self.verticalSlider_33.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_33, 0, 3, 1, 1)
 
         self.verticalSlider_26 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_26.setObjectName(u"verticalSlider_26")
-        self.verticalSlider_26.setOrientation(vertical_orientation)
+        self.verticalSlider_26.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_26, 0, 0, 1, 1)
 
         self.verticalSlider_27 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_27.setObjectName(u"verticalSlider_27")
-        self.verticalSlider_27.setOrientation(vertical_orientation)
+        self.verticalSlider_27.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_27, 0, 8, 1, 1)
 
         self.verticalSlider_25 = QSlider(self.gridLayoutWidget_10)
         self.verticalSlider_25.setObjectName(u"verticalSlider_25")
-        self.verticalSlider_25.setOrientation(vertical_orientation)
+        self.verticalSlider_25.setOrientation(Qt.Orientation.Vertical)
 
         self.gridLayout_13.addWidget(self.verticalSlider_25, 0, 1, 1, 1)
 
@@ -323,19 +348,22 @@ class Ui_MainWindow(object):
 
         self.tabWidget_3 = QTabWidget(self.gridLayoutWidget)
         self.tabWidget_3.setObjectName(u"tabWidget_3")
+        self.tabWidget_3.setAutoFillBackground(False)
+        self.tabWidget_3.setTabShape(QTabWidget.Triangular)
+        self.tabWidget_3.setMovable(False)
         self.tab_musique_3 = QWidget()
         self.tab_musique_3.setObjectName(u"tab_musique_3")
         self.scrollArea_4 = QScrollArea(self.tab_musique_3)
         self.scrollArea_4.setObjectName(u"scrollArea_4")
-        self.scrollArea_4.setGeometry(QRect(-1, -1, 1891, 331))
+        self.scrollArea_4.setGeometry(QRect(-1, -1, 1891, 341))
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1889, 329))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1889, 339))
         self.verticalScrollBar_4 = QScrollBar(self.scrollAreaWidgetContents_4)
         self.verticalScrollBar_4.setObjectName(u"verticalScrollBar_4")
         self.verticalScrollBar_4.setGeometry(QRect(1860, -21, 20, 331))
-        self.verticalScrollBar_4.setOrientation(vertical_orientation)
+        self.verticalScrollBar_4.setOrientation(Qt.Orientation.Vertical)
         self.widget_soundcloud_3 = QWidget(self.scrollAreaWidgetContents_4)
         self.widget_soundcloud_3.setObjectName(u"widget_soundcloud_3")
         self.widget_soundcloud_3.setGeometry(QRect(1149, -11, 691, 311))
@@ -373,13 +401,38 @@ class Ui_MainWindow(object):
         self.pushButton_generate_chords_3.setGeometry(QRect(30, 260, 271, 31))
         self.tableWidget_3 = QTableWidget(self.widget_playlist_3)
         self.tableWidget_3.setObjectName(u"tableWidget_3")
-        self.tableWidget_3.setGeometry(QRect(-5, 61, 731, 241))
+        self.tableWidget_3.setGeometry(QRect(-5, 61, 801, 551))
+        self.checkBox = QCheckBox(self.widget_playlist_3)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setGeometry(QRect(220, 30, 141, 17))
+        self.beforeButton = QPushButton(self.widget_playlist_3)
+        self.beforeButton.setObjectName(u"beforeButton")
+        self.beforeButton.setGeometry(QRect(390, 30, 75, 23))
+        self.PlayPauseButton = QPushButton(self.widget_playlist_3)
+        self.PlayPauseButton.setObjectName(u"PlayPauseButton")
+        self.PlayPauseButton.setGeometry(QRect(470, 30, 75, 23))
+        self.skipButton = QPushButton(self.widget_playlist_3)
+        self.skipButton.setObjectName(u"skipButton")
+        self.skipButton.setGeometry(QRect(550, 30, 75, 23))
+        self.createPlaylistButton = QPushButton(self.widget_playlist_3)
+        self.createPlaylistButton.setObjectName(u"createPlaylistButton")
+        self.createPlaylistButton.setGeometry(QRect(660, 30, 75, 23))
+        self.verticalScrollBar_2 = QScrollBar(self.widget_playlist_3)
+        self.verticalScrollBar_2.setObjectName(u"verticalScrollBar_2")
+        self.verticalScrollBar_2.setGeometry(QRect(780, 60, 16, 251))
+        self.verticalScrollBar_2.setOrientation(Qt.Orientation.Vertical)
         self.widget_generateur_accords_3.raise_()
         self.label_42.raise_()
         self.tableWidget_3.raise_()
+        self.checkBox.raise_()
+        self.beforeButton.raise_()
+        self.PlayPauseButton.raise_()
+        self.skipButton.raise_()
+        self.createPlaylistButton.raise_()
+        self.verticalScrollBar_2.raise_()
         self.widget_partition = QWidget(self.scrollAreaWidgetContents_4)
         self.widget_partition.setObjectName(u"widget_partition")
-        self.widget_partition.setGeometry(QRect(740, 10, 401, 621))
+        self.widget_partition.setGeometry(QRect(810, 10, 331, 621))
         self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
         self.widget_soundcloud_3.raise_()
         self.widget_playlist_3.raise_()
@@ -393,53 +446,85 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.widget_21 = QWidget(self.horizontalLayoutWidget_8)
         self.widget_21.setObjectName(u"widget_21")
-        self.textEdit_4 = QTextEdit(self.widget_21)
-        self.textEdit_4.setObjectName(u"textEdit_4")
-        self.textEdit_4.setGeometry(QRect(0, 0, 1691, 271))
 
         self.horizontalLayout_10.addWidget(self.widget_21)
 
-        self.verticalSlider_40 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_40.setObjectName(u"verticalSlider_40")
-        self.verticalSlider_40.setOrientation(vertical_orientation)
+        self.scaleLabel = QLabel(self.horizontalLayoutWidget_8)
+        self.scaleLabel.setObjectName(u"scaleLabel")
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_40)
+        self.horizontalLayout_10.addWidget(self.scaleLabel)
 
-        self.verticalSlider_39 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_39.setObjectName(u"verticalSlider_39")
-        self.verticalSlider_39.setOrientation(vertical_orientation)
+        self.scale_slider = QSlider(self.horizontalLayoutWidget_8)
+        self.scale_slider.setObjectName(u"scale_slider")
+        self.scale_slider.setOrientation(Qt.Orientation.Vertical)
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_39)
+        self.horizontalLayout_10.addWidget(self.scale_slider)
 
-        self.verticalSlider_38 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_38.setObjectName(u"verticalSlider_38")
-        self.verticalSlider_38.setOrientation(vertical_orientation)
+        self.barwidthLabel = QLabel(self.horizontalLayoutWidget_8)
+        self.barwidthLabel.setObjectName(u"barwidthLabel")
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_38)
+        self.horizontalLayout_10.addWidget(self.barwidthLabel)
 
-        self.verticalSlider_37 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_37.setObjectName(u"verticalSlider_37")
-        self.verticalSlider_37.setOrientation(vertical_orientation)
+        self.bar_width_slider = QSlider(self.horizontalLayoutWidget_8)
+        self.bar_width_slider.setObjectName(u"bar_width_slider")
+        self.bar_width_slider.setOrientation(Qt.Orientation.Vertical)
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_37)
+        self.horizontalLayout_10.addWidget(self.bar_width_slider)
 
-        self.verticalSlider_36 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_36.setObjectName(u"verticalSlider_36")
-        self.verticalSlider_36.setOrientation(vertical_orientation)
+        self.opacityLabel = QLabel(self.horizontalLayoutWidget_8)
+        self.opacityLabel.setObjectName(u"opacityLabel")
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_36)
+        self.horizontalLayout_10.addWidget(self.opacityLabel)
 
-        self.verticalSlider_35 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_35.setObjectName(u"verticalSlider_35")
-        self.verticalSlider_35.setOrientation(vertical_orientation)
+        self.visual_opacity_slider = QSlider(self.horizontalLayoutWidget_8)
+        self.visual_opacity_slider.setObjectName(u"visual_opacity_slider")
+        self.visual_opacity_slider.setOrientation(Qt.Orientation.Vertical)
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_35)
+        self.horizontalLayout_10.addWidget(self.visual_opacity_slider)
 
-        self.verticalSlider_34 = QSlider(self.horizontalLayoutWidget_8)
-        self.verticalSlider_34.setObjectName(u"verticalSlider_34")
-        self.verticalSlider_34.setOrientation(vertical_orientation)
+        self.smoothLabel = QLabel(self.horizontalLayoutWidget_8)
+        self.smoothLabel.setObjectName(u"smoothLabel")
 
-        self.horizontalLayout_10.addWidget(self.verticalSlider_34)
+        self.horizontalLayout_10.addWidget(self.smoothLabel)
+
+        self.smoothing_slider = QSlider(self.horizontalLayoutWidget_8)
+        self.smoothing_slider.setObjectName(u"smoothing_slider")
+        self.smoothing_slider.setOrientation(Qt.Orientation.Vertical)
+
+        self.horizontalLayout_10.addWidget(self.smoothing_slider)
+
+        self.bass = QLabel(self.horizontalLayoutWidget_8)
+        self.bass.setObjectName(u"bass")
+
+        self.horizontalLayout_10.addWidget(self.bass)
+
+        self.bass_gain = QSlider(self.horizontalLayoutWidget_8)
+        self.bass_gain.setObjectName(u"bass_gain")
+        self.bass_gain.setOrientation(Qt.Orientation.Vertical)
+
+        self.horizontalLayout_10.addWidget(self.bass_gain)
+
+        self.mid = QLabel(self.horizontalLayoutWidget_8)
+        self.mid.setObjectName(u"mid")
+
+        self.horizontalLayout_10.addWidget(self.mid)
+
+        self.mid_gain = QSlider(self.horizontalLayoutWidget_8)
+        self.mid_gain.setObjectName(u"mid_gain")
+        self.mid_gain.setOrientation(Qt.Orientation.Vertical)
+
+        self.horizontalLayout_10.addWidget(self.mid_gain)
+
+        self.high = QLabel(self.horizontalLayoutWidget_8)
+        self.high.setObjectName(u"high")
+
+        self.horizontalLayout_10.addWidget(self.high)
+
+        self.high_gain = QSlider(self.horizontalLayoutWidget_8)
+        self.high_gain.setObjectName(u"high_gain")
+        self.high_gain.setOrientation(Qt.Orientation.Vertical)
+
+        self.horizontalLayout_10.addWidget(self.high_gain)
 
         self.tabWidget_3.addTab(self.tab_musique_3, "")
         self.tab_programmation_3 = QWidget()
@@ -560,7 +645,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_15 = QSlider(self.tab_AI_3)
         self.horizontalSlider_15.setObjectName(u"horizontalSlider_15")
         self.horizontalSlider_15.setGeometry(QRect(130, 310, 481, 16))
-        self.horizontalSlider_15.setOrientation(horizontal_orientation)
+        self.horizontalSlider_15.setOrientation(Qt.Orientation.Horizontal)
         self.label_48 = QLabel(self.tab_AI_3)
         self.label_48.setObjectName(u"label_48")
         self.label_48.setGeometry(QRect(0, 310, 121, 16))
@@ -577,13 +662,15 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1920, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1920, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.verticalScrollBar_4.sliderMoved.connect(self.scrollArea_4.update)
+        self.verticalScrollBar_4.sliderMoved.connect(self.label_41.update)
 
         self.tabWidget_3.setCurrentIndex(0)
 
@@ -593,11 +680,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButtonApply_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.leftLabel_1.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.leftLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.leftLabel_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.rightLabel_1.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.rightLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.rightLabel_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_38.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
@@ -606,6 +694,18 @@ class Ui_MainWindow(object):
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Soundcloud Player", None))
         self.label_42.setText(QCoreApplication.translate("MainWindow", u"Playlist automatis\u00e9e", None))
         self.pushButton_generate_chords_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.checkBox.setText(QCoreApplication.translate("MainWindow", u" Lecture Automatique", None))
+        self.beforeButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.PlayPauseButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.skipButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.createPlaylistButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.scaleLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.barwidthLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.opacityLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.smoothLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.bass.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.mid.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.high.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_musique_3), QCoreApplication.translate("MainWindow", u"Tab 1", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_programmation_3), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_montage_video_3), QCoreApplication.translate("MainWindow", u"Page", None))

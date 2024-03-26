@@ -21,9 +21,24 @@ class SpotifyManager:
 
     def get_unique_liked_songs(self):
         self.refresh_token()
+        
         top_tracks = self.sp.current_user_top_tracks(limit=50)['items']
-        recently_played = self.sp.current_user_recently_played(limit=50)['items']
-
+        recently_played = self.sp.current_user_recently_played(limit=50)['items']# The backtick
+        recently_played_2 = self.sp.current_user_recently_played(limit=50, after=recently_played[-1]['played_at'])['items'] #  
+        recently_played_3 = self.sp.current_user_recently_played(limit=50, after=recently_played_2[-1]['played_at'])['items']
+        recently_played_4 = self.sp.current_user_recently_played(limit=50, after=recently_played_3[-1]['played_at'])['items']
+        recently_played_5 = self.sp.current_user_recently_played(limit=50, after=recently_played_4[-1]['played_at'])['items']
+        recently_played = recently_played + recently_played_2 + recently_played_3 + recently_played_4 + recently_played_5
+        top_tracks_2 = self.sp.current_user_top_tracks(limit=50, offset=50)['items']
+        top_tracks_3 = self.sp.current_user_top_tracks(limit=50, offset=100)['items']
+        top_tracks_4 = self.sp.current_user_top_tracks(limit=50, offset=150)['items']
+        top_tracks_5 = self.sp.current_user_top_tracks(limit=50, offset=200)['items']
+        top_tracks_6 = self.sp.current_user_top_tracks(limit=50, offset=250)['items']
+        top_tracks_7 = self.sp.current_user_top_tracks(limit=50, offset=300)['items']
+        top_tracks_8 = self.sp.current_user_top_tracks(limit=50, offset=350)['items']
+        top_tracks_9 = self.sp.current_user_top_tracks(limit=50, offset=400)['items']
+        top_tracks_10 = self.sp.current_user_top_tracks(limit=50, offset=450)['items']
+        top_tracks = top_tracks + top_tracks_2 + top_tracks_3 + top_tracks_4 + top_tracks_5 + top_tracks_6 + top_tracks_7 + top_tracks_8 + top_tracks_9 + top_tracks_10
         unique_tracks = []
         for track in top_tracks:
             if track['id'] not in [t['id'] for t in unique_tracks]:
@@ -35,7 +50,7 @@ class SpotifyManager:
                 unique_tracks.append(track)
 
         return unique_tracks
-    
+        
             
     def play_music(self, track_id=None):
         try:

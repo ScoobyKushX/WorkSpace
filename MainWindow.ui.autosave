@@ -36,9 +36,6 @@
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="8" column="0">
-          <widget class="QComboBox" name="comboBoxLeftUp"/>
-         </item>
          <item row="2" column="0">
           <widget class="QLabel" name="leftLabel_1">
            <property name="text">
@@ -53,22 +50,29 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="leftLabel_2">
-           <property name="text">
-            <string>TextLabel</string>
+         <item row="1" column="0">
+          <widget class="QSlider" name="leftSlider">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
-         <item row="11" column="0">
-          <widget class="QLabel" name="labelLeftDown">
-           <property name="text">
-            <string>TextLabel</string>
+         <item row="3" column="0">
+          <widget class="QSlider" name="leftSlider_1">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="leftLabel">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="leftLabel_2">
            <property name="text">
             <string>TextLabel</string>
            </property>
@@ -80,69 +84,6 @@
             <enum>Qt::Vertical</enum>
            </property>
           </widget>
-         </item>
-         <item row="12" column="0">
-          <widget class="QComboBox" name="comboBoxLeftDown"/>
-         </item>
-         <item row="10" column="0">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0">
-          <widget class="QSlider" name="leftSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="13" column="0">
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="0">
-          <widget class="QSlider" name="leftSlider_1">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="labelLeftUp">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -166,9 +107,9 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>10</y>
           <width>1281</width>
-          <height>391</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="minimumSize">
@@ -201,33 +142,6 @@
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="5" column="0">
-           <widget class="QSlider" name="sliderRight_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="labelRigjhtDown">
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="rightLabel_1">
             <property name="text">
@@ -235,30 +149,17 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" rowspan="3">
-           <widget class="QScrollBar" name="verticalScrollBar_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
-           <spacer name="horizontalSpacer_5">
+          <item row="5" column="0">
+           <widget class="QSlider" name="sliderRight_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="labelRightUp">
-            <property name="text">
-             <string>TextLabel</string>
+          <item row="1" column="0">
+           <widget class="QSlider" name="sliderRight_1">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -283,31 +184,12 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
-           <widget class="QComboBox" name="comboBoxRightUp"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QSlider" name="sliderRight_1">
+          <item row="0" column="1" rowspan="3">
+           <widget class="QScrollBar" name="verticalScrollBar_3">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
            </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QComboBox" name="comboBoxRigjhtDown"/>
-          </item>
-          <item row="6" column="0">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -584,7 +466,26 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_14">
-     <item row="0" column="0" rowspan="2">
+     <item row="0" column="0">
+      <widget class="QProgressBar" name="progressBar_3">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>5</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" rowspan="2">
       <widget class="QTabWidget" name="tabWidget_3">
        <property name="autoFillBackground">
         <bool>false</bool>
@@ -593,7 +494,7 @@
         <enum>QTabWidget::Triangular</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="movable">
         <bool>false</bool>
@@ -645,7 +546,7 @@
              <height>311</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_playlist_soundcloud">
+           <widget class="QLabel" name="label_41">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -690,7 +591,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
              <height>311</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_playlist_spotify">
+           <widget class="QLabel" name="label_42">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -753,7 +654,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
              </rect>
             </property>
            </widget>
-           <widget class="QCheckBox" name="checkboxAutoLecture">
+           <widget class="QCheckBox" name="checkBox">
             <property name="geometry">
              <rect>
               <x>220</x>
@@ -832,9 +733,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
             </property>
            </widget>
            <zorder>widget_generateur_accords_3</zorder>
-           <zorder>label_playlist_spotify</zorder>
+           <zorder>label_42</zorder>
            <zorder>tableWidget_3</zorder>
-           <zorder>checkboxAutoLecture</zorder>
+           <zorder>checkBox</zorder>
            <zorder>beforeButton</zorder>
            <zorder>PlayPauseButton</zorder>
            <zorder>skipButton</zorder>
@@ -850,29 +751,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
              <height>621</height>
             </rect>
            </property>
-           <widget class="QScrollArea" name="scrollArea_Partition">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>341</width>
-              <height>331</height>
-             </rect>
-            </property>
-            <property name="widgetResizable">
-             <bool>true</bool>
-            </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>339</width>
-               <height>329</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
           </widget>
           <zorder>widget_soundcloud_3</zorder>
           <zorder>widget_playlist_3</zorder>
@@ -1013,48 +891,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
           </item>
           <item>
            <widget class="QWidget" name="widget_terminal_3" native="true"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="gridLayoutWidget_3">
-         <property name="geometry">
-          <rect>
-           <x>9</x>
-           <y>329</y>
-           <width>1871</width>
-           <height>291</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QStackedWidget" name="stackedWidget">
-            <widget class="QWidget" name="page">
-             <widget class="QScrollArea" name="scrollArea">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>20</y>
-                <width>1861</width>
-                <height>541</height>
-               </rect>
-              </property>
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_2">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>1859</width>
-                 <height>539</height>
-                </rect>
-               </property>
-              </widget>
-             </widget>
-            </widget>
-            <widget class="QWidget" name="page_2"/>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -1290,7 +1126,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
   <connection>
    <sender>verticalScrollBar_4</sender>
    <signal>sliderMoved(int)</signal>
-   <receiver>label_playlist_soundcloud</receiver>
+   <receiver>label_41</receiver>
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">
